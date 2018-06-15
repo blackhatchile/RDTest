@@ -11,7 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +38,8 @@ public class ReciclerAdapter extends RecyclerView.Adapter<ReciclerAdapter.ViewHo
 
     @Override
     public ReciclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater
-                .from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card, parent, false);
 
         return new ViewHolder(view);
     }
@@ -50,7 +52,7 @@ public class ReciclerAdapter extends RecyclerView.Adapter<ReciclerAdapter.ViewHo
             holder.textvauthor.setText(item.author);
             holder.textvcreated.setText(item.created_at);
 
-            holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            holder.frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //String url_test = "https://www.nytimes.com/2018/06/12/upshot/if-the-robots-come-for-our-jobs-what-should-the-government-do.html";
@@ -91,9 +93,17 @@ public class ReciclerAdapter extends RecyclerView.Adapter<ReciclerAdapter.ViewHo
         }, 3000);
     }
 
+    public void removeItem(int position){
+
+        loadItems.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public CardView card;
-        public LinearLayout linearLayout;
+        //public CardView card;
+        //public LinearLayout linearLayout;
+        public FrameLayout frameLayout;
+        public RelativeLayout view_background, view_front;
 
         public TextView textvtitle;
         public TextView textvauthor;
@@ -101,8 +111,10 @@ public class ReciclerAdapter extends RecyclerView.Adapter<ReciclerAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            card = itemView.findViewById(R.id.hncard);
-            linearLayout = itemView.findViewById(R.id.linearClick);
+            //card = itemView.findViewById(R.id.hncard);
+            frameLayout = itemView.findViewById(R.id.frameClick);
+            view_background = itemView.findViewById(R.id.view_background);
+            view_front = itemView.findViewById(R.id.view_front);
 
             textvtitle = itemView.findViewById(R.id.titletextview);
             textvauthor = itemView.findViewById(R.id.authortextview);

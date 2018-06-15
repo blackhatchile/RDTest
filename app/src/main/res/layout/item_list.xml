@@ -3,50 +3,77 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearClick"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-     <android.support.v7.widget.CardView
-        android:id="@+id/hncard"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/backGroundColorCard">
 
-          <TextView
-            android:id="@+id/titletextview"
+        <ImageView
+            android:id="@+id/clear_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_clear_delete_24dp"/>
+
+        <TextView
+            android:id="@+id/clear_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="15dp"
-            android:textSize="20dp"
-            android:textColor="#000000"
-            android:text="orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
+            android:layout_toLeftOf="@id/clear_icon"
+            android:textSize="13dp"
+            android:layout_marginRight="10dp"
+            android:text="Borrar"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white" />
 
-         <TextView
-            android:id="@+id/authortextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
-            android:layout_marginStart="15dp"
-            android:textSize="15dp"
-            android:text="Lorem Ipsum" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/hncard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-         <TextView
-            android:id="@+id/TextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
-            android:layout_marginStart="105dp"
-            android:textSize="15dp"
-            android:text="-" />
+            <TextView
+                android:id="@+id/titletextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:text="orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
 
-         <TextView
-            android:id="@+id/createdtextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
-            android:layout_marginStart="120dp"
-            android:textSize="15dp"
-            android:text="Created_date" />
-    </android.support.v7.widget.CardView>
+            <TextView
+                android:id="@+id/authortextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:layout_marginStart="15dp"
+                android:textSize="15dp"
+                android:text="Lorem Ipsum" />
+
+            <TextView
+                android:id="@+id/TextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:layout_marginStart="105dp"
+                android:textSize="15dp"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/createdtextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:layout_marginStart="120dp"
+                android:textSize="15dp"
+                android:text="Created_date" />
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
 
 </LinearLayout>

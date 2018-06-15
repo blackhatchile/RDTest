@@ -1,10 +1,12 @@
 package com.example.guest.rdesingtest;
 
+import android.content.ClipData;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +16,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.guest.rdesingtest.Adapter.LoadItem;
 import com.example.guest.rdesingtest.Adapter.ReciclerAdapter;
+import com.example.guest.rdesingtest.SwipeHelper.SwipeDeleteHelper;
+import com.example.guest.rdesingtest.SwipeHelper.SwipeDeleteHelperListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +31,7 @@ import java.util.List;
  * 12-06-2018
  * */
 
-public class   MainActivity extends AppCompatActivity {
+public class   MainActivity extends AppCompatActivity implements SwipeDeleteHelperListener {
 
     //Android HN API JSON Query...
     //Seeing JSON File with https://codebeautify.org/jsonviewer...
@@ -55,8 +59,14 @@ public class   MainActivity extends AppCompatActivity {
 
         list = new ArrayList<>();
 
+        //Loading data from API...
         loadViewData();
 
+        //Calling Swipe Helper...
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback =
+                new SwipeDeleteHelper(0,ItemTouchHelper.LEFT, this);
+
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
         //MOCKUP RECYCLER FUNCTION...
         //adapter = new ReciclerAdapter(list, this);
@@ -110,4 +120,15 @@ public class   MainActivity extends AppCompatActivity {
         }
 
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if(viewHolder instanceof ReciclerAdapter.ViewHolder){
+            String name = list.get(viewHolder.getAdapterPosition()).getAuthor();
+
+            LoadItem delete = list.get(viewHolder.getAdapterPosition());
+            int index = viewHolder.getAdapterPosition();
+
+            adapter.removeItem(index);
+        }
+    }
 }
