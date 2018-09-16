@@ -1,4 +1,3 @@
 # News Reader with HN API.
-Develop Test for job opportunity
-
+Develop Test for exercise.
 Simple News Reader with basic material desing elements.
